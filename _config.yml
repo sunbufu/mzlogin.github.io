@@ -94,12 +94,12 @@ comments_provider: gitalk
 disqus:
     username: 
 # https://imsun.net/posts/gitment-introduction/
-gitment:
-    owner: sunbufu
-    repo: 生活-comments
-    oauth:
-        client_id: 7367b7b7d38a1851c8c4
-        client_secret: c8f83aea051671a33b02a9581678b75aa59cf2b6
+#gitment:
+#    owner: sunbufu
+#    repo: 生活-comments
+#    oauth:
+#        client_id: 7367b7b7d38a1851c8c4
+#        client_secret: c8f83aea051671a33b02a9581678b75aa59cf2b6
 # https://github.com/gitalk/gitalk#install
 gitalk:
     owner: sunbufu
