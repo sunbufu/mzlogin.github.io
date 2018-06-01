@@ -8,6 +8,8 @@ menu: 维基
 permalink: /wiki/
 ---
 
+> 快捷键和命令的整理
+
 <ul class="listing">
 {% for wiki in site.wiki %}
 {% if wiki.title != "Wiki Template" %}
