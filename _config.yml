@@ -103,7 +103,7 @@ disqus:
 # https://github.com/gitalk/gitalk#install
 gitalk:
     owner: sunbufu
-    repo: sunbufu.github.io
+    repo: blog-comments
     clientID: 07d28bfacc76b45d6694
     clientSecret: 8c4678c17795da5dfc3b43aff746c669a28873ea
 # 在使用其它评论组件时可点击显示 Disqus
