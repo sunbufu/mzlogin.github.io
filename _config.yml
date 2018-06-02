@@ -5,8 +5,8 @@ baseurl:
 url: https://sunbufu.github.io
 date_format: "ordinal"
 title: 孙不服的博客
-#subtitle: "打码改变人生"
-#description: "马壮的个人博客"
+subtitle: "Life is great and everthing will be OK"
+description: "孙不服的博客"
 keywords: 孙不服的博客, sunbufu
 timezone: Asia/Shanghai
 encoding: "utf-8"

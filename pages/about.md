@@ -8,7 +8,7 @@ menu: 关于
 permalink: /about/
 ---
 
-请叫我孙不服
+Life is great and everthing will be OK
 
 ## 联系
 
