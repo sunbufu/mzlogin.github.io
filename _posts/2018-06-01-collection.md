@@ -12,7 +12,7 @@ keywords: java, collection
 + 存储元素最后变成object类型（统称为object类型）。  
 
 # 1、容器接口
-![容器接口](https://sunbufu.github.io/images/2018/06/01/collection/20151026090908536)
+![容器接口]({{ site.url }}/images{{ page.url }}/20151026090908536)
 
 + Collection ：集合  
 + Set ：元素无序不重复。  
@@ -22,7 +22,7 @@ keywords: java, collection
 + SortedMap ：有序Map，所有元素按照key的大小排序，元素不重复。
 
 # 2、常用实现类
-![容器实现类](https://sunbufu.github.io/images/2018/06/01/collection/20151026090940288)
+![容器实现类]({{ site.url }}/images{{ page.url }}/20151026090940288)
 数据结构 ：逻辑关系，物理关系
 
 # 3、接口及其实现类特点
