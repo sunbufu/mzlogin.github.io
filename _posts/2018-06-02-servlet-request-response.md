@@ -7,7 +7,7 @@ keywords: java web, servlet
 ---
 
 分析Request
-```
+```java
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -106,7 +106,7 @@ public class HiServlet extends HttpServlet {
 
 ```
 分析Response
-```
+```java
 import java.io.IOException;
 
 import javax.servlet.ServletException;
