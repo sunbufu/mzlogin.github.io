@@ -3,7 +3,7 @@ layout: post
 title: 设计模式 1
 categories: [技术]
 description: 设计模式的介绍，工厂模式，抽象工厂模式，单例模式，建造者模式，原型模式
-keywords: servlet filter, servlet listener
+keywords: design patterns, 设计模式
 ---
 
 # 设计模式（Design Patterns）
