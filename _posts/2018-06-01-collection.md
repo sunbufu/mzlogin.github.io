@@ -1,8 +1,8 @@
 ---
 layout: post
-title: collection(容器)
-categories: [技术]
-description: colletion
+title: Collection(容器)
+categories: [Java]
+description: collection
 keywords: java, collection
 ---
 

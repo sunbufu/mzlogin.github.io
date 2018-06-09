@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 数据库工具类
-categories: [技术]
+categories: [Java]
 description: 数据库工具类
 keywords: java, jdbc
 ---

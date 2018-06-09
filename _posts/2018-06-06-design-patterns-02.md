@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 设计模式 2
-categories: [技术]
-description: 设计模式的介绍，工厂模式，抽象工厂模式，单例模式，建造者模式，原型模式
+categories: [Design patterns]
+description: 适配器模式、装饰模式、代理模式、外观模式、桥接模式、组合模式、享元模式
 keywords: design patterns, 设计模式
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 重定向与请求转发
-categories: [技术]
+categories: [Basis]
 description: 重定向与请求转发
 keywords: http
 ---

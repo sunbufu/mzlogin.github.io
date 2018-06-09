@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java反射
-categories: [技术]
+categories: [Java]
 description: Java反射的简单介绍
 keywords: java, reflect
 ---

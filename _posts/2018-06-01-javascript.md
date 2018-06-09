@@ -1,7 +1,7 @@
 ---
 layout: post
 title: javascript
-categories: [技术]
+categories: [Web]
 description: javascript
 keywords: javascript
 ---
