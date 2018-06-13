@@ -15,10 +15,10 @@ keywords: Spring Cloud
 1 pom.xml中导入Config Server需要的包
 
 ```xml
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-server</artifactId>
-		</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-config-server</artifactId>
+</dependency>
 ```
 
 2 在Application类中添加`@EnableConfigServer`注解
@@ -67,11 +67,11 @@ nickName: world
 ## 2.2 Spring Cloud Config Client项目
 1 pom.xml中导入Config Client需要的包（**注意，此处跟Config Server的配置不同**）
 
-```yml
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-config</artifactId>
+</dependency>
 ```
 
 2 在`src/main/resources`中，新建`bootstrap.yml`文件  

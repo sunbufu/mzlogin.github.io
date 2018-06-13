@@ -14,10 +14,10 @@ keywords: Spring Cloud
 1 首先在pom.xml引入Spring Security的相关配置，如下
 
 ```xml
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
 ```
 
 2 在qpplication.yml中配置账号密码，如下
