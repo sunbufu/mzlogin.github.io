@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 数据库范式
-categories: [Algorithm]
+categories: [Basis, SQL]
 description: 数据库范式
 keywords: 数据库范式, normal form
 ---
