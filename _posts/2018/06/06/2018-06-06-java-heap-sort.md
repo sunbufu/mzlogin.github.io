@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 堆排序的Java实现
-categories: [Algorithm]
+categories: [algorithm]
 description: 堆排序的Java实现
 keywords: heap, heapsort
 ---

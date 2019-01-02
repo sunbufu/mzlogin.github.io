@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring StateMachine介绍
-categories: [Java, Spring]
+categories: [java, spring]
 description: Spring StateMachine介绍
 keywords: Spring StateMachine
 ---

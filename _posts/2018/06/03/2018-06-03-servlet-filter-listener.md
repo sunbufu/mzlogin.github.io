@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Servlet过滤器和监听器
-categories: [Java]
+categories: [java]
 description: Servlet过滤器和监听器
 keywords: servlet filter, servlet listener
 ---

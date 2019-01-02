@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java IO流
-categories: [Java]
+categories: [java]
 description: java IO流总结
 keywords: java, io
 ---

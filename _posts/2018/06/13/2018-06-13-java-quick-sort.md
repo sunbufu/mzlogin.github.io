@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 快速排序的Java实现
-categories: [Algorithm]
+categories: [algorithm]
 description: 快速排序的Java实现
 keywords: quicksort
 ---

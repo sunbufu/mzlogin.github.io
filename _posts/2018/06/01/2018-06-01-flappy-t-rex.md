@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 恐龙快跑(Flappy T-Rex)
-categories: [Open source]
+categories: [open source]
 description: 恐龙快跑(Flappy T-Rex)
 keywords: flappy T-Rex
 ---

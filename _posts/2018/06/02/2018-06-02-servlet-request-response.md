@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Servlet分析Request和Response
-categories: [Java]
+categories: [java]
 description: servlet分析request和response
 keywords: java web, servlet
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 北京的春天下过雨
-categories: [Life]
+categories: [life]
 description: 记一次春雨
 keywords: 北京, 春雨
 ---

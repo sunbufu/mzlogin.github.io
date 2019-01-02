@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Collection(容器)
-categories: [Java]
+categories: [java]
 description: collection
 keywords: java, collection
 ---

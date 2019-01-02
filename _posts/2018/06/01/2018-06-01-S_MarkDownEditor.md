@@ -1,7 +1,7 @@
 ---
 layout: post
 title: S_MarkDownEditor
-categories: [Open source]
+categories: [open source]
 description: MarkDownEditor介绍
 keywords: java, markdown
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 设计模式 3
-categories: [Design patterns]
+categories: [design patterns]
 description: 策略模式、模板方法模式、观察者模式、迭代模式、责任链模式、命令模式
 keywords: design patterns, 设计模式
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 设计模式 2
-categories: [Design patterns]
+categories: [design patterns]
 description: 适配器模式、装饰模式、代理模式、外观模式、桥接模式、组合模式、享元模式
 keywords: design patterns, 设计模式
 ---

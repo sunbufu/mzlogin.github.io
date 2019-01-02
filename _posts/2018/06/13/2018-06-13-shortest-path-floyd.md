@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 最短路径-弗洛伊德
-categories: [Algorithm]
+categories: [algorithm]
 description: 最短路径-弗洛伊德
 keywords: shortest path, Floyd-Warshall
 ---

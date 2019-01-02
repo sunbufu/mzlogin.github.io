@@ -1,7 +1,7 @@
 ---
 layout: post
 title: javascript
-categories: [Web]
+categories: [web]
 description: javascript
 keywords: javascript
 ---

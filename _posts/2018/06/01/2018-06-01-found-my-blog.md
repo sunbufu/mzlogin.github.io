@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 创建我的博客
-categories: [Life]
+categories: [life]
 description: 写在创建我的博客之后
 keywords: github pages, jekyll
 ---

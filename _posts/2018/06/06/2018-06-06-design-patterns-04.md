@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 设计模式 4
-categories: [Design patterns]
+categories: [design patterns]
 description: 备忘录模式、状态模式、访问者模式、中介者模式、解释器模式
 keywords: design patterns, 设计模式
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Cloud Config 使用本地配置文件
-categories: [Java, Spring]
+categories: [java, spring]
 description: Spring Cloud Config 使用本地配置文件
 keywords: Spring Cloud
 ---

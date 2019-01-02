@@ -1,7 +1,7 @@
 ---
 layout: post
 title: java下的cookie和session
-categories: [Basis]
+categories: [basis]
 description: java下的cookie和session
 keywords: java web
 ---

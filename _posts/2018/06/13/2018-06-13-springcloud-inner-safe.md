@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Cloud 保证微服务内安全
-categories: [Java, Spring]
+categories: [java, spring]
 description: Spring Cloud 保证微服务内安全
 keywords: Spring Cloud
 ---

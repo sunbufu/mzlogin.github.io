@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SQL总结
-categories: [SQL]
+categories: [sql]
 description: SQL总结
 keywords: SQL
 ---

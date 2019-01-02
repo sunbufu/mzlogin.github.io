@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 日志中的requestId
-categories: [Java]
+categories: [java]
 description: 日志中的requestId
 keywords: requestId
 ---

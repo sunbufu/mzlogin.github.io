@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 发布jar包到maven中央仓库
-categories: [Basis]
+categories: [basis]
 description: 发布jar包到maven中央仓库
 keywords: maven
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ANE打包步骤
-categories: [Action Script]
+categories: [action script]
 description: ANE的打包步骤（包括Android和IOS）
 keywords: ANE, Android, IOS
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: authorize(基于注解的权限认证框架)
-categories: [Open Source]
+categories: [open source]
 description: authorize(基于注解的权限认证框架)
 keywords: authorize
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 最短路径-迪杰斯特拉
-categories: [Algorithm]
+categories: [algorithm]
 description: 最短路径-迪杰斯特拉
 keywords: shortest path, Dijkstra
 ---
