@@ -10,14 +10,14 @@ layout: default
                     <div class="collection-info">
                         {% if page.date %}
                         <span class="meta-info">
-            <span class="octicon octicon-calendar"></span> {{ page.date | date: "%Y/%m/%d" }}
-          </span>
+                            <span class="octicon octicon-calendar"></span> {{ page.date | date: "%Y/%m/%d" }}
+                        </span>
                         {% endif %}
                         {% for cat in page.categories %}
                         <span class="meta-info">
-            <span class="octicon octicon-file-directory"></span>
-            <a href="{{ site.url }}/categories/#{{ cat }}" title="{{ cat }}">{{ cat }}</a>
-          </span>
+                            <span class="octicon octicon-file-directory"></span>
+                            <a href="{{ site.url }}/categories/#{{ cat }}" title="{{ cat }}">{{ cat }}</a>
+                        </span>
                         {% endfor %}
                     </div>
                 </div>

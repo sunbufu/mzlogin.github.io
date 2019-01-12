@@ -1,6 +1,6 @@
 .home .banner,
 .home .site-header {
-    background: #4183c4;
+    background: #388E8E;
     color: #fff
 }
 
@@ -26,7 +26,6 @@
 .home .site-header .site-header-nav-item:hover {
     color: #fff
 }
-
 
 @media (max-width:50em) {
   .home .collapsed .icon-bar {
