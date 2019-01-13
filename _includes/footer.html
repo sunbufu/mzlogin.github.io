@@ -17,32 +17,33 @@
         <ul class="site-footer-links mobile-hidden">
             {% for nav in site.navs %}
             <li>
-                <a href="{{ site.url }}{{ nav.href }}" title="{{ nav.label }}"
-                   target="{{ nav.target | default: _self }}">{{ nav.label }}</a>
+                <a href="{{ site.url }}{{ nav.href }}" title="{{ nav.label }}" target="{{ nav.target | default: _self }}">
+                    {{ nav.label }}
+                </a>
             </li>
             {% endfor %}
             <li>
                 <a href="{{ site.url }}{{ site.subscribe_rss }}">
-                    <span class="octicon octicon-rss" style="color:orange;"/>
+                    <span class="octicon octicon-rss" style="color:orange;"></span>
                 </a>
             </li>
         </ul>
         <div class="left mobile-block">
             <span id="busuanzi_container_site_pv">
-                 访问量&nbsp;<span id="busuanzi_value_site_pv"/>
+                访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
             </span>
             <span id="busuanzi_container_site_uv">
-                 访客数&nbsp;<span id="busuanzi_value_site_uv"/>
+                访客数&nbsp;<span id="busuanzi_value_site_uv"></span>
             </span>
             <span id="busuanzi_container_page_pv">
-                 阅读量&nbsp;<span id="busuanzi_value_page_pv"/>
+                阅读量&nbsp;<span id="busuanzi_value_page_pv"></span>
             </span>
         </div>
     </div>
 </footer>
 <div class="tools-wrapper">
     <a class="gotop" href="#" title="回到顶部">
-        <span class="octicon octicon-arrow-up"/>
+        <span class="octicon octicon-arrow-up"></span>
     </a>
 </div>
 <!-- / footer -->
@@ -102,10 +103,8 @@
             a.src = g;
             m.parentNode.insertBefore(a, m)
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
         ga('create', '{{ site.google.analytics_id }}', 'auto');
         ga('send', 'pageview');
-
     </script>
 </div>
 {% endif %}
