@@ -173,7 +173,7 @@
 .site-header-nav-item.selected {
     color: #333;
     padding: 6px 10px 13px;
-    border-bottom: 2px solid #d26911
+    border-bottom: 2px solid #333
 }
 
 .site-header-nav-item+.btn-outline {
