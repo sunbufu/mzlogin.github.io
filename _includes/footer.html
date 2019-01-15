@@ -50,6 +50,7 @@
 <script src="{{ site.url }}/assets/vendor/share.js/dist/js/share.min.js"></script>
 <script src="{{ site.url }}/assets/js/geopattern.js"></script>
 <script src="{{ site.url }}/assets/js/prism.js"></script>
+<script src="{{ site.url }}/assets/js/jquery.fancybox.pack.js?v=2.1.5" type="text/javascript" ></script>
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <link rel="stylesheet" href="{{ site.url }}/assets/css/globals/prism.css">
 <script>
@@ -59,6 +60,17 @@
             $(this).geopattern($(this).data('pattern-id'));
         });
         // hljs.initHighlightingOnLoad();
+        // 给图片添加链接
+        $("img").each(function() {
+            var strA = "<a class='fancybox-image' href='" + this.src + "'></a>";
+            $(this).wrapAll(strA);
+        });
+    });
+    // fancybox
+    $(".fancybox-image").fancybox({
+        openEffect: 'elastic',
+        closeEffect: 'elastic',
+        padding:0,
     });
 </script>
 
