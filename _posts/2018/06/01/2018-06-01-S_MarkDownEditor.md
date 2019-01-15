@@ -23,7 +23,7 @@ keywords: java, markdown
 **传统段落显示效果**
 ![传统段落显示效果]({{ site.url }}/images{{ page.url }}/classical.jpg)
 **缩进后段落显示效果**
-![缩进后段落显示效果]({{ site.url }}/images{{ page.url }}/20151021192448010)
+![缩进后段落显示效果]({{ site.url }}/images{{ page.url }}/20151021192448010.jpg)
 首行缩进的作用在这里就不一一描述了，有兴趣的朋友还请自行百度。
 
 ### 2）表格
@@ -36,7 +36,7 @@ keywords: java, markdown
 | row4 col1 | row4 col2 | row4 col3 | row 4 col4|
 ```
 效果如下：
-![表格语法]({{ site.url }}/images{{ page.url }}/20151021194111491)
+![表格语法]({{ site.url }}/images{{ page.url }}/20151021194111491.jpg)
 注：*如果觉得实在是难看受不了，请勿喷，良辰在此谢过！*
 
 ## 2、基本语法演示
@@ -50,7 +50,7 @@ keywords: java, markdown
 ##### Header 5
 ###### Header 6
 ```
-![标题语法]({{ site.url }}/images{{ page.url }}/20151021194411896)
+![标题语法]({{ site.url }}/images{{ page.url }}/20151021194411896.jpg)
 
 ### 2.2 文本样式
 ```
@@ -70,13 +70,13 @@ keywords: java, markdown
 ***
 ---
 ```
-![文本样式]({{ site.url }}/images{{ page.url }}/20151021194743759)
+![文本样式]({{ site.url }}/images{{ page.url }}/20151021194743759.jpg)
 
 ### 2.3 图片
 ```
 ![头像圆.jpg](H:\头像圆.jpg)
 ```
-![这里写图片描述]({{ site.url }}/images{{ page.url }}/20151021194943900)
+![这里写图片描述]({{ site.url }}/images{{ page.url }}/20151021194943900.jpg)
 
 ### 2.4 代码高亮
 java:
@@ -88,25 +88,25 @@ public class Test{
 
 sql:
 SELECT * FROM EMP;--查询EMP表中的全部数据
-![代码高亮]({{ site.url }}/images{{ page.url }}/20151021195317405)
+![代码高亮]({{ site.url }}/images{{ page.url }}/20151021195317405.jpg)
 
 ### 2.5 导出为(*.md)
-![选择]({{ site.url }}/images{{ page.url }}/20151025152035581)
+![选择]({{ site.url }}/images{{ page.url }}/20151025152035581.jpg)
 查看效果：
-![效果]({{ site.url }}/images{{ page.url }}/20151025152145446)
+![效果]({{ site.url }}/images{{ page.url }}/20151025152145446.jpg)
 
 ### 2.6 导出为(*.html)
-![选择]({{ site.url }}/images{{ page.url }}/20151025152252593)
+![选择]({{ site.url }}/images{{ page.url }}/20151025152252593.jpg)
 
 效果如下：
-![效果]({{ site.url }}/images{{ page.url }}/20151025152418465)
+![效果]({{ site.url }}/images{{ page.url }}/20151025152418465.jpg)
 html文本如下：
-![html文本]({{ site.url }}/images{{ page.url }}/20151025152451617)
+![html文本]({{ site.url }}/images{{ page.url }}/20151025152451617.jpg)
 
 ### 2.7 导出为(*.pdf)
-![选择]({{ site.url }}/images{{ page.url }}/20151025152555509)
+![选择]({{ site.url }}/images{{ page.url }}/20151025152555509.jpg)
 效果如下：
-![pdf效果]({{ site.url }}/images{{ page.url }}/20151025152658087)
+![pdf效果]({{ site.url }}/images{{ page.url }}/20151025152658087.jpg)
 
 ### 2.5 其他
 还有一些其他的例如缩进`>`等的语法在此不再演示。

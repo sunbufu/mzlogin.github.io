@@ -73,7 +73,7 @@ context.call("test", value);//为FREContext的子类Map容器的key
 
 # 四、按一下目录结构放置文件：
 
-![目录结构]({{ site.url }}/images{{ page.url }}/20160309132231238)
+![目录结构]({{ site.url }}/images{{ page.url }}/20160309132231238.jpg)
 
 其中：  
 *.ane----最后获得的ane文件  

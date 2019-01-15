@@ -9,7 +9,7 @@ keywords: shortest path, Floyd-Warshall
 ### 1.定义概述
 Floyd-Warshall算法（Floyd-Warshall algorithm）是解决任意两点间的最短路径的一种算法，可以正确处理有向图或负权的最短路径问题，同时也被用于计算有向图的传递闭包。
 ### 2.实例演示
-![floyd]({{ site.url }}/images{{ page.url }}/20171108155607180)
+![floyd]({{ site.url }}/images{{ page.url }}/20171108155607180.jpg)
 
 ```java
 /**

@@ -54,7 +54,7 @@ spring:
 ```
 
 4 准备客户端配置文件  
-![配置文件路径]({{ site.url }}/images{{ page.url }}/201802081716414)
+![配置文件路径]({{ site.url }}/images{{ page.url }}/201802081716414.jpg)
 client-dev.yml文件的内容：
 
 ```yml
@@ -119,7 +119,7 @@ public class HelloController {
 }
 ```
 
- ![效果]({{ site.url }}/images{{ page.url }}/20180208173250913)
+ ![效果]({{ site.url }}/images{{ page.url }}/20180208173250913.jpg)
 
 # 三、总结
 [源码地址](https://github.com/sunbufu/sunbufu-cloud)

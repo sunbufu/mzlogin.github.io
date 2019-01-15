@@ -32,7 +32,7 @@ security:
 ```
 
 3 此时访问接口发现已经需要认证了。  
-![需要认证]({{ site.url }}/images{{ page.url }}/20180208111542235)  
+![需要认证]({{ site.url }}/images{{ page.url }}/20180208111542235.jpg)  
 输入正确的账号和密码后就可以访问了。  
 
 ## 2.2在调用微服务项目中配置Feign的账号密码
@@ -73,11 +73,11 @@ public class FeignConfiguration {
 ```
 
 3 这样完成后，就可以正常的访问了。
-![正常访问]({{ site.url }}/images{{ page.url }}/20180208112147404)
+![正常访问]({{ site.url }}/images{{ page.url }}/20180208112147404.jpg)
 
 # 三、实例
 
-![工程介绍]({{ site.url }}/images{{ page.url }}/20180208105341622)
+![工程介绍]({{ site.url }}/images{{ page.url }}/20180208105341622.jpg)
 
 [源码地址](https://github.com/sunbufu/sunbufu-cloud)
 

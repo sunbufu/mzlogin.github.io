@@ -7,7 +7,7 @@ keywords: design patterns, 设计模式
 ---
 
 先来张图，看看这11中模式的关系：
-![设计模式]({{ site.url }}/images{{ page.url }}/20160115163523072)
+![设计模式]({{ site.url }}/images{{ page.url }}/20160115163523072.jpg)
 
 + 第一类：通过父类与子类的关系进行实现。
 + 第二类：两个类之间。
@@ -17,7 +17,7 @@ keywords: design patterns, 设计模式
 ## 13、策略模式（strategy）
 
 策略模式定义了一系列算法，并将每个算法封装起来，使他们可以相互替换，且算法的变化不会影响到使用算法的客户。需要设计一个接口，为一系列实现类提供统一的方法，多个实现类实现该接口，设计一个抽象类（可有可无，属于辅助类），提供辅助函数，关系图如下：
-![策略模式]({{ site.url }}/images{{ page.url }}/20160115163732870)  
+![策略模式]({{ site.url }}/images{{ page.url }}/20160115163732870.jpg)  
 图中ICalculator提供统一的方法，
 AbstractCalculator是辅助类，提供辅助方法，接下来，依次实现下每个类：
 首先统一接口：
@@ -88,7 +88,7 @@ public class StrategyTest {
 ## 14、模板方法模式（Template Method）
 
 解释一下模板方法模式，就是指：一个抽象类中，有一个主方法，再定义1...n个方法，可以是抽象的，也可以是实际的方法，定义一个类，继承该抽象类，重写抽象方法，通过调用抽象类，实现对子类的调用，先看个关系图：
-![模板方式模式]({{ site.url }}/images{{ page.url }}/20160115164204070)  
+![模板方式模式]({{ site.url }}/images{{ page.url }}/20160115164204070.jpg)  
 就是在AbstractCalculator类中定义一个主方法calculate，calculate()调用spilt()等，Plus和Minus分别继承AbstractCalculator类，通过对AbstractCalculator的调用实现对子类的调用，看下面的例子：
 ```java
 public abstract class AbstractCalculator {
@@ -137,7 +137,7 @@ public class StrategyTest {
 ## 15、观察者模式（Observer）
 
 包括这个模式在内的接下来的四个模式，都是类和类之间的关系，不涉及到继承，学的时候应该 记得归纳，记得本文最开始的那个图。观察者模式很好理解，类似于邮件订阅和RSS订阅，当我们浏览一些博客或wiki时，经常会看到RSS图标，就这的意思是，当你订阅了该文章，如果后续有更新，会及时通知你。其实，简单来讲就一句话：当一个对象变化时，其它依赖该对象的对象都会收到通知，并且随着变化！对象之间是一种一对多的关系。先来看看关系图：
-![观察者模式]({{ site.url }}/images{{ page.url }}/20160115164522655)  
+![观察者模式]({{ site.url }}/images{{ page.url }}/20160115164522655.jpg)  
 解释下这些类的作用：MySubject类就是我们的主对象，Observer1和Observer2是依赖于MySubject的对象，当MySubject变化时，Observer1和Observer2必然变化。AbstractSubject类中定义着需要监控的对象列表，可以对其进行修改：增加或删除被监控对象，且当MySubject变化时，负责通知在列表内存在的对象。我们看实现代码：
 一个Observer接口：
 ```java
@@ -237,7 +237,7 @@ observer2 has received!
 ## 16、迭代器模式（Iterator）
 
 顾名思义，迭代器模式就是顺序访问聚集中的对象，一般来说，集合中非常常见，如果对集合类比较熟悉的话，理解本模式会十分轻松。这句话包含两层意思：一是需要遍历的对象，即聚集对象，二是迭代器对象，用于对聚集对象进行遍历访问。我们看下关系图：
-![迭代器模式]({{ site.url }}/images{{ page.url }}/20160115165023990)  
+![迭代器模式]({{ site.url }}/images{{ page.url }}/20160115165023990.jpg)  
 这个思路和我们常用的一模一样，MyCollection中定义了集合的一些操作，MyIterator中定义了一系列迭代操作，且持有Collection实例，我们来看看实现代码：
 两个接口：
 ```java
@@ -349,7 +349,7 @@ public class Test {
 ## 17、责任链模式（Chain of Responsibility）
 
 接下来我们将要谈谈责任链模式，有多个对象，每个对象持有对下一个对象的引用，这样就会形成一条链，请求在这条链上传递，直到某一对象决定处理该请求。但是发出者并不清楚到底最终那个对象会处理该请求，所以，责任链模式可以实现，在隐瞒客户端的情况下，对系统进行动态的调整。先看看关系图：
-![责任链模式]({{ site.url }}/images{{ page.url }}/20160115165315744)  
+![责任链模式]({{ site.url }}/images{{ page.url }}/20160115165315744.jpg)  
 Abstracthandler类提供了get和set方法，方便MyHandle类设置和修改引用对象，MyHandle类是核心，实例化后生成一系列相互持有的对象，构成一条链。
 ```java
 public interface Handler {
@@ -413,7 +413,7 @@ h3deal!
 ## 18、命令模式（Command）
 
 命令模式很好理解，举个例子，司令员下令让士兵去干件事情，从整个事情的角度来考虑，司令员的作用是，发出口令，口令经过传递，传到了士兵耳朵里，士兵去执行。这个过程好在，三者相互解耦，任何一方都不用去依赖其他人，只需要做好自己的事儿就行，司令员要的是结果，不会去关注到底士兵是怎么实现的。我们看看关系图：
-![命令模式]({{ site.url }}/images{{ page.url }}/20160115165528870)  
+![命令模式]({{ site.url }}/images{{ page.url }}/20160115165528870.jpg)  
 Invoker是调用者（司令员），Receiver是被调用者（士兵），MyCommand是命令，实现了Command接口，持有接收对象，看实现代码：
 ```java
 public interface Command {
