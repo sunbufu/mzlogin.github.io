@@ -62,12 +62,12 @@
         // hljs.initHighlightingOnLoad();
         // 给图片添加链接
         $("body").find("img").each(function () {
-            var strA = "<a class='fancybox-image' title='" + this.alt + "' href='" + this.src +"'></a>";
+            var strA = "<a class='fancybox' title='" + this.alt + "' href='" + this.src +"'></a>";
             $(this).wrapAll(strA);
         });
     });
     // fancybox
-    $(".fancybox-image").fancybox({
+    $(".fancybox").fancybox({
         'openEffect': 'elastic',
         'closeEffect': 'elastic',
         'titleShow': false,
