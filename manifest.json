@@ -1,6 +1,6 @@
 {
-  "name": "sunbufu",
-  "short_name": "sunbufu",
+  "name": "sunbufu's blog",
+  "short_name": "sunbufu's blog",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
