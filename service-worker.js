@@ -1,34 +1,18 @@
-// service-worker.js
-
-// set names for both precache & runtime cache
-workbox.core.setCacheNameDetails({
-    prefix: 'my-blog',
-    suffix: 'v1',
-    precache: 'precache',
-    runtime: 'runtime-cache'
-});
-
-// let Service Worker take control of pages ASAP
-workbox.skipWaiting();
-workbox.clientsClaim();
-
-// let Workbox handle our precache list
-workbox.precaching.precacheAndRoute(self.__precacheManifest);
-
-// use `networkFirst` strategy for `*.html`, like all my posts
-workbox.routing.registerRoute(
-    /\.html$/,
-    workbox.strategies.networkFirst()
-);
-
-// use `cacheFirst` strategy for images
-workbox.routing.registerRoute(
-    /assets\/(img|icons)/,
-    workbox.strategies.cacheFirst()
-);
-
-// third party files
-workbox.routing.registerRoute(
-    /^https?:\/\/sunbufu.club/,
-    workbox.strategies.staleWhileRevalidate()
-);
+var cacheStorageKey = 'minimal-pwa-1'
+var cacheList=[
+    '/',
+    'index.html',
+    '/assets/vendor/primer-css/css/primer.css',
+    '/assets/vendor/primer-markdown/dist/user-content.min.css',
+    '/assets/vendor/octicons/octicons/octicons.css',
+    '/assets/css/components/collection.css',
+    '/assets/css/components/repo-card.css',
+    '/assets/css/sections/repo-list.css'
+]
+self.addEventListener('install',e =>{
+    e.waitUntil(
+        caches.open(cacheStorageKey)
+            .then(cache => cache.addAll(cacheList))
+            .then(() => self.skipWaiting())
+    )
+})

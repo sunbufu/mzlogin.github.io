@@ -74,7 +74,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jemoji
-  - jekyll-pwa-plugin
 #     - jekyll-html-pipeline
 #     - jekyll-mentions
 collections:
@@ -126,16 +125,3 @@ simple_jekyll_search:
 #    analytics_id: UA-80669434-1
 baidu:
   analytics_id: f3c45aa73d5475ac1af92f29b0912e09
-
-pwa:
-  sw_src_filepath: service-worker.js # Optional
-  sw_dest_filename: service-worker.js # Optional
-  dest_js_directory: assets/js # Required
-  precache_recent_posts_num: 5 # Optional
-  precache_glob_directory: / # Optional
-  precache_glob_patterns: # Optional
-    - "{js,css,fonts}/**/*.{js,css,eot,svg,ttf,woff}"
-    - index.html
-  precache_glob_ignores: # Optional
-    - sw-register.js
-    - "fonts/**/*"
