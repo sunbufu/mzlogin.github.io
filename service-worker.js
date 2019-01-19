@@ -2,14 +2,14 @@
 `use strict`;
 
 const
-    version = '1.0.0',
-    CACHE = version + '::PWAsite',
-    // offlineURL = '/offline/',
+    version = '1.0.1',
+    CACHE = version + "::sunbufu's blog",
+    offlineURL = '/offline.html',
     installFilesEssential = [
         '/',
         '/manifest.json',
         '/index.html'
-    ],//.concat(offlineURL),
+    ].concat(offlineURL),
     installFilesDesirable = [];
 
 // install static assets
@@ -45,7 +45,6 @@ self.addEventListener('install', event => {
     );
 });
 
-
 // application activated
 self.addEventListener('activate', event => {
     console.log('service worker: activate');
@@ -58,10 +57,10 @@ self.addEventListener('activate', event => {
 
 // is image URL?
 let iExt = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp'].map(f => '.' + f);
+
 function isImage(url) {
     return iExt.reduce((ret, ext) => ret || url.endsWith(ext), false);
 }
-
 
 // return offline asset
 function offlineAsset(url) {
@@ -76,13 +75,12 @@ function offlineAsset(url) {
                 }
             }
         );
-        // } else {
-        //     // return page
-        //     return caches.match(offlineURL);
+    } else {
+        // return page
+        return caches.match(offlineURL);
     }
 
 }
-
 
 // application fetch network data
 self.addEventListener('fetch', event => {
@@ -94,7 +92,6 @@ self.addEventListener('fetch', event => {
             .then(cache => {
                 return cache.match(event.request)
                     .then(response => {
-
                         if (response) {
                             // return cached file
                             console.log('cache fetch: ' + url);
@@ -103,11 +100,9 @@ self.addEventListener('fetch', event => {
                         // make network request
                         return fetch(event.request)
                             .then(newreq => {
-
                                 console.log('network fetch: ' + url);
                                 if (newreq.ok) cache.put(event.request, newreq.clone());
                                 return newreq;
-
                             })
                             // app is offline
                             .catch(() => offlineAsset(url));
