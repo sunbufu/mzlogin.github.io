@@ -125,3 +125,5 @@ simple_jekyll_search:
 #    analytics_id: UA-80669434-1
 baidu:
   analytics_id: f3c45aa73d5475ac1af92f29b0912e09
+
+include: service-worker.js
