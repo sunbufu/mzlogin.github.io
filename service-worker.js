@@ -1,8 +1,12 @@
+---
+    layout: null
+---
+
 // configuration
 `use strict`;
 
 const
-    version = '1.0.1',
+    version = '{{site.time}}',
     CACHE = version + "::sunbufu's blog",
     offlineURL = '/offline.html',
     installFilesEssential = [
