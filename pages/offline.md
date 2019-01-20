@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: tips
 title: 离线提示
 description: 你来到了一片荒芜之地
 keywords: offline
