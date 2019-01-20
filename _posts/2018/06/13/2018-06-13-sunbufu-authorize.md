@@ -106,4 +106,4 @@ public String index() {
 `authorize-starter`是为`spring boot`提供的一个快速配置。主要是配置了`authorize-core`的拦截器`AccessInterceptor`。
 
 # 三、总结
-`authorize`是为了快速便捷进行权限管理的开源框架，在github上开源地址是[https://github.com/sunbufu/sunbufu-authorize](https://github.com/sunbufu/sunbufu-authorize)。欢迎大家关注、加星，也欢迎大家随时联系我[sunyoubufu@qq.com]()，谢谢。
+`authorize`是为了快速便捷进行权限管理的开源框架，在github上开源地址是[https://github.com/sunbufu/sunbufu-authorize](https://github.com/sunbufu/sunbufu-authorize)。欢迎大家关注、加星，也欢迎大家随时联系我[sunyoubufu@163.com]()，谢谢。
