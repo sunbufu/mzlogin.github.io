@@ -7,7 +7,7 @@
 
 const
     version = '{{site.time}}',
-    CACHE = version + "::sunbufu's blog",
+    CACHE = "sunbufu's blog " + version,
     offlineURL = '/offline.html',
     installFilesEssential = [
         '/',
