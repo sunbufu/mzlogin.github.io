@@ -91,8 +91,8 @@ comments_provider: gitalk
 # !!!重要!!! 请修改下面这些信息为你自己申请的
 # !!!Important!!! Please modify infos below to yours
 # https://disqus.com
-disqus:
-  username:
+#disqus:
+#  username:
 # https://imsun.net/posts/gitment-introduction/
 #gitment:
 #    owner: sunbufu
@@ -125,5 +125,3 @@ simple_jekyll_search:
 #    analytics_id: UA-80669434-1
 baidu:
   analytics_id: f3c45aa73d5475ac1af92f29b0912e09
-
-include: service-worker.js
