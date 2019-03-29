@@ -2,7 +2,6 @@
     layout: null
 ---
 
-// configuration
 `use strict`;
 
 const
