@@ -46,14 +46,14 @@ function installStaticFiles() {
             // cache desirable files
             cache.addAll(installFilesDesirable);
             // cache essential files
-            // installFilesEssential.forEach(value => {
-            //     try {
-            //         cache.add(value);
-            //     } catch (e) {
-            //         console.log("cache error " + value);
-            //     }
-            // });
-            return cache.addAll(installFilesEssential);
+            installFilesEssential.forEach(value => {
+                try {
+                    cache.add(value);
+                } catch (e) {
+                    console.log("cache error " + value);
+                }
+            });
+            // return cache.addAll(installFilesEssential);
         });
 }
 
