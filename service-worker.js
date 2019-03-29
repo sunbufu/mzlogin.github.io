@@ -16,7 +16,7 @@ const
         '/assets/vendor/primer-css/css/primer.css',
         '/assets/vendor/primer-markdown/dist/user-content.min.css',
         '/assets/vendor/octicons/octicons/octicons.css',
-        '/assets/css/components/collection.css',s
+        '/assets/css/components/collection.css',
         '/assets/css/components/repo-card.css',
         '/assets/css/sections/repo-list.css',
         '/assets/css/sections/mini-repo-list.css',
