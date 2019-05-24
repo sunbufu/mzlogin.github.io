@@ -71,7 +71,7 @@ Ehcache 提供了 3 种淘汰机制（驱逐策略），分别是 LRU（默认�
 5. volatile-random：只限于设置了 expire 的部分; 随机删除一部分 key。
 6. volatile-ttl：只限于设置了 expire 的部分; 优先删除剩余时间 (time to live,TTL) 短的key。
 
-详细介绍可以参考 [官方文档](https://redis.io/topics/lru-cache/) 。
+详细介绍可以参考 [官方文档](https://redis.io/topics/lru-cache/){:target="_blank"} 。
 
 ## 3.3 Guava 中的缓存淘汰
 Guava 在维护缓存数据的同时，还维护了 WirteQueue 和 AccessQueue，分别用来记录写入的记录和访问的记录。总体来说有 4 种淘汰策略：
@@ -81,4 +81,4 @@ Guava 在维护缓存数据的同时，还维护了 WirteQueue 和 AccessQueue�
 3. Reference-based Eviction：基于引用驱逐（通过 java 的软、弱引用实现）。
 4. Explicit Removals：显示移除。
 
-详细介绍可以参考 [官方文档](https://github.com/google/guava/wiki/CachesExplained)。
+详细介绍可以参考 [官方文档](https://github.com/google/guava/wiki/CachesExplained){:target="_blank"}。
