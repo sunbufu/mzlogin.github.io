@@ -171,8 +171,8 @@ GRANT ALL PRIVILEGES ON *.* TO 'sunbufu'@'%';
 ```bash
 docker run 
 --detach 
--publish 27017:27017 
+--publish 27017:27017 
 --name mongodb 
--volume /Users/sunbufu/data/mongodb/data/db:/data/db 
+--volume /Users/sunbufu/data/mongodb/data/db:/data/db 
 mongo
 ```
