@@ -127,28 +127,28 @@ docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 ## 2.1 gitlab-ce
 
 ```bash
-docker run 
---detach 
---publish 8443:443 
---publish 8080:80 
---publish 8022:22 
---name gitlab
---volume /Users/sunbufu/data/gitlab/config:/etc/gitlab 
---volume /Users/sunbufu/data/gitlab/logs:/var/log/gitlab 
---volume /Users/sunbufu/data/gitlab/data:/var/opt/gitlab 
+docker run \
+--detach \
+--publish 8443:443 \ 
+--publish 8080:80 \
+--publish 8022:22 \
+--name gitlab \
+--volume /Users/sunbufu/data/gitlab/config:/etc/gitlab \ 
+--volume /Users/sunbufu/data/gitlab/logs:/var/log/gitlab \
+--volume /Users/sunbufu/data/gitlab/data:/var/opt/gitlab \
 gitlab/gitlab-ce 
 ```
 
 ## 2.2 mysql
 ```bash
-docker run 
---detach 
---publish 3306:3306 
---name mysql 
---volume /Users/sunbufu/data/mysql/conf:/etc/mysql/conf.d 
---volume /Users/sunbufu/data/mysql/logs:/logs 
---volume /Users/sunbufu/data/mysql/data:/var/lib/mysql 
--e MYSQL_ROOT_PASSWORD=123456 
+docker run \
+--detach \
+--publish 3306:3306 \ 
+--name mysql \
+--volume /Users/sunbufu/data/mysql/conf:/etc/mysql/conf.d \ 
+--volume /Users/sunbufu/data/mysql/logs:/logs \
+--volume /Users/sunbufu/data/mysql/data:/var/lib/mysql \ 
+-e MYSQL_ROOT_PASSWORD=123456 \
 mysql
 ```
 注：mysql 8 版本需要额外的配置下远程连接用户，命令如下
@@ -169,10 +169,22 @@ GRANT ALL PRIVILEGES ON *.* TO 'sunbufu'@'%';
 ## 2.3 mongodb
 
 ```bash
-docker run 
---detach 
---publish 27017:27017 
---name mongodb 
---volume /Users/sunbufu/data/mongodb/data/db:/data/db 
+docker run \
+--detach \
+--publish 27017:27017 \ 
+--name mongodb \
+--volume /Users/sunbufu/data/mongodb/data/db:/data/db \ 
 mongo
+```
+
+## 2.4 zookeeper
+
+```bash
+docker run \
+--detach  \
+--publish 2181:2181 \
+--volume /Users/sunbufu/data/zookeeper/data/:/data/ \
+--volume /Users/sunbufu/data/zookeeper/conf/:/conf/ \
+--name=zookeeper  \
+--privileged zookeeper
 ```
