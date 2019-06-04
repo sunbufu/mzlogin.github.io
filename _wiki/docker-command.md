@@ -133,9 +133,9 @@ docker run \
 --publish 8080:80 \
 --publish 8022:22 \
 --name gitlab \
---volume /Users/sunbufu/data/gitlab/config:/etc/gitlab \ 
---volume /Users/sunbufu/data/gitlab/logs:/var/log/gitlab \
---volume /Users/sunbufu/data/gitlab/data:/var/opt/gitlab \
+--volume ~/data/gitlab/config:/etc/gitlab \ 
+--volume ~/data/gitlab/logs:/var/log/gitlab \
+--volume ~/data/gitlab/data:/var/opt/gitlab \
 gitlab/gitlab-ce 
 ```
 
@@ -145,9 +145,9 @@ docker run \
 --detach \
 --publish 3306:3306 \ 
 --name mysql \
---volume /Users/sunbufu/data/mysql/conf:/etc/mysql/conf.d \ 
---volume /Users/sunbufu/data/mysql/logs:/logs \
---volume /Users/sunbufu/data/mysql/data:/var/lib/mysql \ 
+--volume ~/data/mysql/conf:/etc/mysql/conf.d \ 
+--volume ~/data/mysql/logs:/logs \
+--volume ~/data/mysql/data:/var/lib/mysql \ 
 -e MYSQL_ROOT_PASSWORD=123456 \
 mysql
 ```
@@ -173,7 +173,7 @@ docker run \
 --detach \
 --publish 27017:27017 \ 
 --name mongodb \
---volume /Users/sunbufu/data/mongodb/data/db:/data/db \ 
+--volume ~/data/mongodb/data/db:/data/db \ 
 mongo
 ```
 
@@ -183,8 +183,20 @@ mongo
 docker run \
 --detach  \
 --publish 2181:2181 \
---volume /Users/sunbufu/data/zookeeper/data/:/data/ \
---volume /Users/sunbufu/data/zookeeper/conf/:/conf/ \
+--volume ~/data/zookeeper/data/:/data/ \
+--volume ~/data/zookeeper/conf/:/conf/ \
 --name=zookeeper  \
 --privileged zookeeper
 ```
+
+## 2.5 redis
+```bash
+docker run \
+--detach  \
+--publish 6379:6379 \
+--volume ~/data/redis/data/:/data/ \
+--name redis \
+redis \
+redis-server --appendonly yes
+```
+`redis-server --appendonly yes` : 在容器执行 redis-server 启动命令，并打开 redis 持久化配置
