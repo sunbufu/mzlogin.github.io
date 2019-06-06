@@ -1,12 +1,12 @@
 ---
 layout: wiki
-title: Mac键盘符号和修饰键说明
+title: Mac 键盘符号和 IDEA 快捷键说明
 categories: 快捷键
 description: Mac键盘符号和修饰键说明
 keywords: 快捷键
 ---
 
-#### Mac键盘符号和修饰键说明
+#### Mac 键盘符号和修饰键说明
 
 - `⌘` Command
 - `⇧` Shift

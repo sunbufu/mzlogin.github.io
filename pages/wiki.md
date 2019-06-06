@@ -1,14 +1,14 @@
 ---
 layout: page
 title: Wiki
-description: 人越学越觉得自己无知
+description: 知识的岛屿越大，无知的海岸线越长
 keywords: 维基, Wiki
 comments: false
 menu: 维基
 permalink: /wiki/
 ---
 
-> 快捷键和命令的整理
+> 知识的岛屿越大，无知的海岸线越长
 
 <ul class="listing">
 {% for wiki in site.wiki %}
