@@ -129,11 +129,11 @@ docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 ```bash
 docker run \
 --detach \
---publish 8443:443 \ 
+--publish 8443:443 \
 --publish 8080:80 \
 --publish 8022:22 \
 --name gitlab \
---volume ~/data/gitlab/config:/etc/gitlab \ 
+--volume ~/data/gitlab/config:/etc/gitlab \
 --volume ~/data/gitlab/logs:/var/log/gitlab \
 --volume ~/data/gitlab/data:/var/opt/gitlab \
 gitlab/gitlab-ce 
@@ -143,11 +143,11 @@ gitlab/gitlab-ce
 ```bash
 docker run \
 --detach \
---publish 3306:3306 \ 
+--publish 3306:3306 \
 --name mysql \
---volume ~/data/mysql/conf:/etc/mysql/conf.d \ 
+--volume ~/data/mysql/conf:/etc/mysql/conf.d \
 --volume ~/data/mysql/logs:/logs \
---volume ~/data/mysql/data:/var/lib/mysql \ 
+--volume ~/data/mysql/data:/var/lib/mysql \
 -e MYSQL_ROOT_PASSWORD=123456 \
 mysql
 ```
@@ -171,9 +171,9 @@ GRANT ALL PRIVILEGES ON *.* TO 'sunbufu'@'%';
 ```bash
 docker run \
 --detach \
---publish 27017:27017 \ 
+--publish 27017:27017 \
 --name mongodb \
---volume ~/data/mongodb/data/db:/data/db \ 
+--volume ~/data/mongodb/data/db:/data/db \
 mongo
 ```
 
