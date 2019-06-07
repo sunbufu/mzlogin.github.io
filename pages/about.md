@@ -8,7 +8,7 @@ menu: 关于
 permalink: /about/
 ---
 
-Life is great and everything will be OK
+Life is great and everything will be OK.
 
 ## 联系
 

@@ -16,35 +16,35 @@ keywords: pages, pwa
 // 饿汉式
 public class Singleton {
     /** 私有的构造方法 */
-	private Singleton() {
-	}
-	/** 私有的静态的对象 */
-	private static Singleton singleton = new Singleton();
-	/** 公共的静态的获取对象的方法 */
-	public static Singleton getInstance(){
-		return singleton;
-	}
+    private Singleton() {
+    }
+    /** 私有的静态的对象 */
+    private static Singleton singleton = new Singleton();
+    /** 公共的静态的获取对象的方法 */
+    public static Singleton getInstance(){
+        return singleton;
+    }
 }
 ```
 ```java
 // 懒汉式
 public class Singleton {
-	/* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 */
-	private static Singleton instance = null;
-	/* 私有构造方法，防止被实例化 */
-	private Singleton() {
-	}
-	/* 静态工程方法，创建实例 */
-	public static Singleton getInstance() {
-		if (instance == null) {
-			instance = new Singleton();
-		}
-		return instance;
-	}
-	/* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 */
-	public Object readResolve() {
-		return instance;
-	}
+    /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 */
+    private static Singleton instance = null;
+    /* 私有构造方法，防止被实例化 */
+    private Singleton() {
+    }
+    /* 静态工程方法，创建实例 */
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+    /* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 */
+    public Object readResolve() {
+        return instance;
+    }
 }
 ```
 饿汉式 会在类加载时直接创建对象。懒汉式 有点类似懒加载的感觉，在第一次使用的时候创建对象，但是这样也带来一个问题，如何保证线程安全。
@@ -52,30 +52,30 @@ public class Singleton {
 ```java
 // double check
 public class Singleton {
-        /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 */
-        private static Singleton instance = null;
-
-        /* 私有构造方法，防止被实例化 */
-        private Singleton() {
-        }
-
-        /* 静态工程方法，创建实例 */
-        public static Singleton getInstance() {
-            if (instance == null) {
-                synchronized (Singleton.class) {
-                    if (instance == null) {
-                        instance = new Singleton();
-                    }
+    /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 */
+    private static Singleton instance = null;
+    
+    /* 私有构造方法，防止被实例化 */
+    private Singleton() {
+    }
+    
+    /* 静态工程方法，创建实例 */
+    public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton();
                 }
             }
-            return instance;
         }
-
-        /* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 */
-        public Object readResolve() {
-            return instance;
-        }
+        return instance;
     }
+    
+    /* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 */
+    public Object readResolve() {
+        return instance;
+    }
+}
 ```
 这样就能保证线程安全，保障只有一个实例最后会被创建。但还有一个问题，JVM 可能会在执行的时候进行指令重排序，
 因为 `instance = new Singleton();` 这条语句并不是一个原子性操作，实际上是执行了三件事情。
@@ -89,25 +89,25 @@ public class Singleton {
 ```java
 public class Singleton {
     /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 */
-	private static volatile Singleton instance = null;
-	/* 私有构造方法，防止被实例化 */
-	private Singleton() {
-	}
-	/* 静态工程方法，创建实例 */
-	public static Singleton getInstance() {
-		if (instance == null) {
-		    synchronized (Singleton.class){
-		        if (instance == null){
-			        instance = new Singleton();
-			    }
-			}
-		}
-		return instance;
-	}
-	/* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 */
-	public Object readResolve() {
-		return instance;
-	}
+    private static volatile Singleton instance = null;
+    /* 私有构造方法，防止被实例化 */
+    private Singleton() {
+    }
+    /* 静态工程方法，创建实例 */
+    public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized (Singleton.class){
+                if (instance == null){
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+    /* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 */
+    public Object readResolve() {
+        return instance;
+    }
 }
 ```
 `volatile` 表示所有的对所修饰变量的操作，都不会被拷贝到线程缓存中执行。阻止 JVM 的指令重排序，要求按照 123 的顺序来执行。
@@ -122,7 +122,7 @@ public class Singleton {
     public static Singleton getInstance() {
         return SingletonHolder.INSTANCE;
     }
-
+    
     private static class SingletonHolder {
         private static final Singleton INSTANCE = new Singleton();
     }
@@ -137,7 +137,7 @@ public class Singleton {
     public static Singleton getInstance() {
         return SingletonHolder.INSTANCE.getSingleton();
     }
-
+    
     private enum SingletonHolder {
         INSTANCE;
         private Singleton singleton;
