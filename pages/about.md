@@ -10,7 +10,7 @@ permalink: /about/
 
 Life is great and everything will be OK.
 
-## 联系
+## 联系方式
 
 {% for website in site.data.social %}
 * {{ website.sitename }}：[{{ website.name }}]({{ website.url }})
