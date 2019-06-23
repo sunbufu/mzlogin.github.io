@@ -148,7 +148,7 @@ docker run \
 --volume ~/data/mysql/conf:/etc/mysql/conf.d \
 --volume ~/data/mysql/logs:/logs \
 --volume ~/data/mysql/data:/var/lib/mysql \
--e MYSQL_ROOT_PASSWORD=123456 \
+--env MYSQL_ROOT_PASSWORD=123456 \
 mysql
 ```
 注：mysql 8 版本需要额外的配置下远程连接用户，命令如下
@@ -199,4 +199,19 @@ docker run \
 redis \
 redis-server --appendonly yes
 ```
+
 `redis-server --appendonly yes` : 在容器执行 redis-server 启动命令，并打开 redis 持久化配置
+
+## 2.6 nacos
+```bash
+docker run \
+--detach \
+--publish 8848:8848 \
+--name nacos \
+--volume ~/data/nacos/data:/home/nacos/data \
+--volume ~/data/nacos/logs:/home/nacos/logs \
+--env MODE=standalone \
+nacos/nacos-server
+```
+
+详细配置参照 <https://hub.docker.com/r/nacos/nacos-server>
