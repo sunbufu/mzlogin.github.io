@@ -215,3 +215,16 @@ nacos/nacos-server
 ```
 
 详细配置参照 <https://hub.docker.com/r/nacos/nacos-server>
+
+## 2.7 postgres
+```bash
+docker run \
+--detach \
+--publish 5432:5432 \
+--name postgres \
+--volume ~/data/postgres/data:/var/lib/postgresql/data \
+--env POSTGRES_PASSWORD=123456 \
+postgres
+```
+
+详细配置参照 <https://hub.docker.com/_/postgres>
