@@ -228,3 +228,16 @@ postgres
 ```
 
 详细配置参照 <https://hub.docker.com/_/postgres>
+
+## 2.8 nextcloud
+```bash
+docker run \
+--detach \
+--restart=always \
+--name nextcloud \
+--publish 8080:80 \
+--volume ~/data/nextcloud/data:/var/www/html \
+docker.io/nextcloud
+```
+
+详细配置参照 <https://hub.docker.com/_/nextcloud>
