@@ -26,7 +26,7 @@ keywords: Spring StateMachine
 spring statemachine是使用 Spring框架下的状态机概念创建的一种应用程序开发框架。它使得状态机结构层次化，简化了配置状态机的过程。  
 官方文档：<https://docs.spring.io/autorepo/docs/spring-statemachine/1.0.0.M3/reference/htmlsingle/#sm-statecontext>
 
-## 例子一：简单订单流程
+## 例子一：简单订单状态
 ![订单状态流程]({{ site.url }}/images{{ page.url }}/20180507125704883.jpg)  
 源码已经上传到[github](https://github.com/sunbufu/spring-state-machine-demo)。  
 如下所示：
