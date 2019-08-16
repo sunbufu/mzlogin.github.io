@@ -21,13 +21,15 @@ keywords: Spring StateMachine
 2. 退出动作：在退出状态时进行
 3. 输入动作：依赖于当前状态和输入条件进行
 4. 转移动作：在进行特定转移时进行
+
 # 二、spring statemachine
 spring statemachine是使用 Spring框架下的状态机概念创建的一种应用程序开发框架。它使得状态机结构层次化，简化了配置状态机的过程。  
-官方文档：https://docs.spring.io/autorepo/docs/spring-statemachine/1.0.0.M3/reference/htmlsingle/#sm-statecontext
+官方文档：<https://docs.spring.io/autorepo/docs/spring-statemachine/1.0.0.M3/reference/htmlsingle/#sm-statecontext>
 
 ## 例子一：简单订单流程
 ![订单状态流程]({{ site.url }}/images{{ page.url }}/20180507125704883.jpg)  
-使用过程：
+源码已经上传到[github](https://github.com/sunbufu/spring-state-machine-demo)。  
+如下所示：
 ### 1 引入依赖
 
 ```xml
@@ -44,21 +46,36 @@ spring statemachine是使用 Spring框架下的状态机概念创建的一种应
 ```java
 /**
  * 订单状态
+ * 
+ * @author sunbufu
  */
-public enum OrderStatus {
-    // 待支付，待发货，待收货，订单结束
-    WAIT_PAYMENT, WAIT_DELIVER, WAIT_RECEIVE, FINISH;
+public enum OrderState {
+    /** 待支付 */
+    WAIT_PAYMENT,
+    /** 待发货 */
+    WAIT_DELIVER,
+    /** 待收货 */
+    WAIT_RECEIVE,
+    /** 完结 */
+    FINISH;
 }
 ```
 
 ```java
 /**
- * 订单状态改变事件
+ * 订单事件
+ * 
+ * @author sunbufu
  */
-public enum OrderStatusChangeEvent {
-    // 支付，发货，确认收货
-    PAYED, DELIVERY, RECEIVED;
+public enum OrderEvent {
+    /** 支付 */
+    PAYED,
+    /** 发货 */
+    DELIVERY,
+    /** 收货 */
+    RECEIVED;
 }
+
 ```
 
 ### 3 添加配置
@@ -66,55 +83,46 @@ public enum OrderStatusChangeEvent {
 ```java
 /**
  * 订单状态机配置
+ * 
+ * @author sunbufu
  */
 @Configuration
 @EnableStateMachine(name = "orderStateMachine")
-public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<OrderStatus, OrderStatusChangeEvent> {
+public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<OrderState, OrderEvent> {
 
-    /**
-     * 配置状态
-     * @param states
-     * @throws Exception
-     */
     @Override
-    public void configure(StateMachineStateConfigurer<OrderStatus, OrderStatusChangeEvent> states) throws Exception {
-        states
-                .withStates()
-                .initial(OrderStatus.WAIT_PAYMENT)
-                .states(EnumSet.allOf(OrderStatus.class));
+    public void configure(StateMachineStateConfigurer<OrderState, OrderEvent> states) throws Exception {
+        states.withStates()
+            // 默认状态
+            .initial(OrderState.WAIT_PAYMENT)
+            // 全部状态
+            .states(EnumSet.allOf(OrderState.class));
     }
 
-    /**
-     * 配置状态转换事件关系
-     * @param transitions
-     * @throws Exception
-     */
     @Override
-    public void configure(StateMachineTransitionConfigurer<OrderStatus, OrderStatusChangeEvent> transitions) throws Exception {
-        transitions
-                .withExternal().source(OrderStatus.WAIT_PAYMENT).target(OrderStatus.WAIT_DELIVER).event(OrderStatusChangeEvent.PAYED)
-                .and()
-                .withExternal().source(OrderStatus.WAIT_DELIVER).target(OrderStatus.WAIT_RECEIVE).event(OrderStatusChangeEvent.DELIVERY)
-                .and()
-                .withExternal().source(OrderStatus.WAIT_RECEIVE).target(OrderStatus.FINISH).event(OrderStatusChangeEvent.RECEIVED);
+    public void configure(StateMachineTransitionConfigurer<OrderState, OrderEvent> transitions) throws Exception {
+        transitions.withExternal()
+            // 支付事件 待支付 -> 待发货
+            .source(OrderState.WAIT_PAYMENT).target(OrderState.WAIT_DELIVER).event(OrderEvent.PAYED)
+            // 发货事件 待发货 -> 待收货
+            .and().withExternal().source(OrderState.WAIT_DELIVER).target(OrderState.WAIT_RECEIVE).event(OrderEvent.DELIVERY)
+            // 收货事件 待收货 -> 完结
+            .and().withExternal().source(OrderState.WAIT_RECEIVE).target(OrderState.FINISH).event(OrderEvent.RECEIVED);
     }
 
-    /**
-     * 持久化配置
-     * 实际使用中，可以配合redis等，进行持久化操作
-     * @return
-     */
+    /** 状态机持久化 */
     @Bean
-    public StateMachinePersister<OrderStatus, OrderStatusChangeEvent, Order> persister(){
-        return new DefaultStateMachinePersister<>(new StateMachinePersist<OrderStatus, OrderStatusChangeEvent, Order>() {
+    public StateMachinePersister<OrderState, OrderEvent, Order> orderStateMachinePersister() {
+        return new DefaultStateMachinePersister<>(new StateMachinePersist<OrderState, OrderEvent, Order>() {
             @Override
-            public void write(StateMachineContext<OrderStatus, OrderStatusChangeEvent> context, Order order) throws Exception {
-                //此处并没有进行持久化操作
+            public void write(StateMachineContext<OrderState, OrderEvent> context, Order order) {
+                // 进行持久化操作
+                order.setStatus(context.getState());
             }
 
             @Override
-            public StateMachineContext<OrderStatus, OrderStatusChangeEvent> read(Order order) throws Exception {
-                //此处直接获取order中的状态，其实并没有进行持久化读取操作
+            public StateMachineContext<OrderState, OrderEvent> read(Order order) {
+                // 读取状态并设置到context中
                 return new DefaultStateMachineContext<>(order.getStatus(), null, null, null);
             }
         });
@@ -125,31 +133,30 @@ public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<Order
 ### 4 添加订单状态监听器
 
 ```java
-@Component("orderStateListener")
+/**
+ * 订单状态变更监听器
+ * 
+ * @author sunbufu
+ */
+@Component
 @WithStateMachine(name = "orderStateMachine")
-public class OrderStateListenerImpl{
+public class OrderStateListener {
 
     @OnTransition(source = "WAIT_PAYMENT", target = "WAIT_DELIVER")
-    public boolean payTransition(Message<OrderStatusChangeEvent> message) {
-        Order order = (Order) message.getHeaders().get("order");
-        order.setStatus(OrderStatus.WAIT_DELIVER);
-        System.out.println("支付 headers=" + message.getHeaders().toString());
+    public boolean payTransition(Message<OrderEvent> message) {
+        System.out.println("待支付 --支付--> 待发货");
         return true;
     }
 
     @OnTransition(source = "WAIT_DELIVER", target = "WAIT_RECEIVE")
-    public boolean deliverTransition(Message<OrderStatusChangeEvent> message) {
-        Order order = (Order) message.getHeaders().get("order");
-        order.setStatus(OrderStatus.WAIT_RECEIVE);
-        System.out.println("发货 headers=" + message.getHeaders().toString());
+    public boolean deliverTransition(Message<OrderEvent> message) {
+        System.out.println("待发货 --发货--> 待收货");
         return true;
     }
 
     @OnTransition(source = "WAIT_RECEIVE", target = "FINISH")
-    public boolean receiveTransition(Message<OrderStatusChangeEvent> message){
-        Order order = (Order) message.getHeaders().get("order");
-        order.setStatus(OrderStatus.FINISH);
-        System.out.println("收货 headers=" + message.getHeaders().toString());
+    public boolean receiveTransition(Message<OrderEvent> message) {
+        System.out.println("待收货 --收货--> 完成");
         return true;
     }
 }
@@ -158,85 +165,75 @@ public class OrderStateListenerImpl{
 ### 5 service中使用
 
 ```java
-@Service("orderService")
+/**
+ * 订单服务
+ *
+ * 待支付 -> 待发货 -> 待收货 -> 完结
+ *
+ * @author sunbufu
+ */
+@Service
 public class OrderServiceImpl implements OrderService {
+
+    @Autowired
+    private StateMachine<OrderState, OrderEvent> orderStateMachine;
+
+    @Autowired
+    private StateMachinePersister<OrderState, OrderEvent, Order> orderStateMachinePersister;
 
     @Autowired
     private OrderMapper orderMapper;
 
-    @Autowired
-    private StateMachine<OrderStatus, OrderStatusChangeEvent> orderStateMachine;
-
-    @Autowired
-    private StateMachinePersister<OrderStatus, OrderStatusChangeEvent, Order> persister;
-
-    private int id = 1;
-    private Map<Integer, Order> orders = new HashMap<>();
-
     @Override
-    public Order creat() {
+    public Order create() {
         Order order = new Order();
-        order.setStatus(OrderStatus.WAIT_PAYMENT);
-        order.setId(id++);
-        orders.put(order.getId(), order);
-        return order;
+        order.setStatus(OrderState.WAIT_PAYMENT);
+        return orderMapper.save(order);
     }
 
     @Override
     public Order pay(int id) {
-        Order order = orders.get(id);
-        System.out.println("threadName=" + Thread.currentThread().getName() + " 尝试支付 id=" + id);
-        Message message = MessageBuilder.withPayload(OrderStatusChangeEvent.PAYED).setHeader("order", order).build();
-        if (!sendEvent(message, order)) {
-            System.out.println("threadName=" + Thread.currentThread().getName() + " 支付失败, 状态异常 id=" + id);
+        Order order = orderMapper.select(id);
+        if (!sendEvent(OrderEvent.PAYED, order)) {
+            throw new RuntimeException(" 等待支付 -> 等待发货 失败, 状态异常 order=" + order);
         }
-        return orders.get(id);
+        return order;
     }
 
     @Override
     public Order deliver(int id) {
-        Order order = orders.get(id);
-        System.out.println("threadName=" + Thread.currentThread().getName() + " 尝试发货 id=" + id);
-        if (!sendEvent(MessageBuilder.withPayload(OrderStatusChangeEvent.DELIVERY).setHeader("order", order).build(), orders.get(id))) {
-            System.out.println("threadName=" + Thread.currentThread().getName() + " 发货失败，状态异常 id=" + id);
+        Order order = orderMapper.select(id);
+        if (!sendEvent(OrderEvent.DELIVERY, order)) {
+            throw new RuntimeException(" 等待发货 -> 等待收货 失败，状态异常 order=" + order);
         }
-        return orders.get(id);
+        return order;
     }
 
     @Override
     public Order receive(int id) {
-        Order order = orders.get(id);
-        System.out.println("threadName=" + Thread.currentThread().getName() + " 尝试收货 id=" + id);
-        if (!sendEvent(MessageBuilder.withPayload(OrderStatusChangeEvent.RECEIVED).setHeader("order", order).build(), orders.get(id))) {
-            System.out.println("threadName=" + Thread.currentThread().getName() + " 收货失败，状态异常 id=" + id);
+        Order order = orderMapper.select(id);
+        if (!sendEvent(OrderEvent.RECEIVED, order)) {
+            throw new RuntimeException(" 等待收货 -> 完成 失败，状态异常 order=" + order);
         }
-        return orders.get(id);
+        return order;
     }
-
-    @Override
-    public Map<Integer, Order> getOrders() {
-        return orders;
-    }
-
 
     /**
      * 发送订单状态转换事件
      *
-     * @param message
-     * @param order
-     * @return
+     * @param event 事件
+     * @param order 订单
+     * @return 执行结果
      */
-    private synchronized boolean sendEvent(Message<OrderStatusChangeEvent> message, Order order) {
+    private boolean sendEvent(OrderEvent event, Order order) {
         boolean result = false;
         try {
             orderStateMachine.start();
-            //尝试恢复状态机状态
-            persister.restore(orderStateMachine, order);
-            //添加延迟用于线程安全测试
-            Thread.sleep(1000);
-            result = orderStateMachine.sendEvent(message);
-            //持久化状态机状态
-            persister.persist(orderStateMachine, order);
+            // 设置状态机状态
+            orderStateMachinePersister.restore(orderStateMachine, order);
+            result = orderStateMachine.sendEvent(MessageBuilder.withPayload(event).setHeader("order", order).build());
+            // 保存状态机状态
+            orderStateMachinePersister.persist(orderStateMachine, order);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -250,247 +247,30 @@ public class OrderServiceImpl implements OrderService {
 ### 6 测试
 
 ```java
-@Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = Application.class)
 public class OrderServiceImplTest {
 
     @Autowired
     private OrderService orderService;
 
     @Test
-    public void testMultThread(){
-        orderService.creat();
-        orderService.creat();
-
-        orderService.pay(1);
-
-        new Thread(()->{
-            orderService.deliver(1);
-            orderService.receive(1);
-        }).start();
-
-        orderService.pay(2);
-        orderService.deliver(2);
-        orderService.receive(2);
-
-        System.out.println(orderService.getOrders());
-    }
-}
-```
-
-## 例子二：状态机工厂
-有些时候，一个状态机不够用，因为我们可能要处理多个订单。这个时候就要用到了状态机工厂。
-### 1 配置修改
-
-```java
-/**
- * 订单状态机配置
- */
-@Configuration
-//@EnableStateMachine(name = "orderStateMachine")
-@EnableStateMachineFactory(name = "orderStateMachineFactory")
-public class OrderStateMachineConfig extends EnumStateMachineConfigurerAdapter<OrderStatus, OrderStatusChangeEvent> {
-
-    /**订单状态机ID*/
-    public static final String orderStateMachineId = "orderStateMachineId";
-
-    /**
-     * 配置状态
-     * @param states
-     * @throws Exception
-     */
-    @Override
-    public void configure(StateMachineStateConfigurer<OrderStatus, OrderStatusChangeEvent> states) throws Exception {
-        states
-                .withStates()
-                .initial(OrderStatus.WAIT_PAYMENT)
-                .states(EnumSet.allOf(OrderStatus.class));
+    public void testSuccess(){
+        Order order = orderService.create();
+        orderService.pay(order.getId());
+        orderService.deliver(order.getId());
+        orderService.receive(order.getId());
+        assertTrue(OrderState.FINISH == order.getStatus());
     }
 
-    /**
-     * 配置状态转换事件关系
-     * @param transitions
-     * @throws Exception
-     */
-    @Override
-    public void configure(StateMachineTransitionConfigurer<OrderStatus, OrderStatusChangeEvent> transitions) throws Exception {
-        transitions
-                .withExternal().source(OrderStatus.WAIT_PAYMENT).target(OrderStatus.WAIT_DELIVER).event(OrderStatusChangeEvent.PAYED)
-                .and()
-                .withExternal().source(OrderStatus.WAIT_DELIVER).target(OrderStatus.WAIT_RECEIVE).event(OrderStatusChangeEvent.DELIVERY)
-                .and()
-                .withExternal().source(OrderStatus.WAIT_RECEIVE).target(OrderStatus.FINISH).event(OrderStatusChangeEvent.RECEIVED);
+    @Test(expected = RuntimeException.class)
+    public void testError(){
+        Order order = orderService.create();
+//        orderService.pay(order.getId());
+        orderService.deliver(order.getId());
+        orderService.receive(order.getId());
+        assertTrue(OrderState.FINISH == order.getStatus());
     }
 
-    /**
-     * 持久化配置
-     * 实际使用中，可以配合redis等，进行持久化操作
-     * @return
-     */
-    @Bean
-    public StateMachinePersister<OrderStatus, OrderStatusChangeEvent, Order> persister(){
-        return new DefaultStateMachinePersister<>(new StateMachinePersist<OrderStatus, OrderStatusChangeEvent, Order>() {
-            @Override
-            public void write(StateMachineContext<OrderStatus, OrderStatusChangeEvent> context, Order order) throws Exception {
-                //此处并没有进行持久化操作
-                order.setStatus(context.getState());
-            }
-
-            @Override
-            public StateMachineContext<OrderStatus, OrderStatusChangeEvent> read(Order order) throws Exception {
-                //此处直接获取order中的状态，其实并没有进行持久化读取操作
-                StateMachineContext<OrderStatus, OrderStatusChangeEvent> result =new DefaultStateMachineContext<>(order.getStatus(), null, null, null, null, orderStateMachineId);
-                return result;
-            }
-        });
-    }
-}
-```
-
-### 2 service中使用
-
-```java
-@Service("orderService")
-public class OrderServiceImpl implements OrderService {
-
-    @Autowired
-    private OrderMapper orderMapper;
-
-//    @Autowired
-//    private StateMachine<OrderStatus, OrderStatusChangeEvent> orderStateMachine;
-
-    public static final String stateMachineId = "orderStateMachine";
-
-    @Autowired
-    private StateMachineFactory<OrderStatus, OrderStatusChangeEvent> orderStateMachineFactory;
-
-    @Autowired
-    private StateMachinePersister<OrderStatus, OrderStatusChangeEvent, Order> persister;
-
-    private int id = 1;
-    private Map<Integer, Order> orders = new HashMap<>();
-
-    @Override
-    public Order creat() {
-        Order order = new Order();
-        order.setStatus(OrderStatus.WAIT_PAYMENT);
-        order.setId(id++);
-        orders.put(order.getId(), order);
-        return order;
-    }
-
-    @Override
-    public Order pay(int id) {
-        Order order = orders.get(id);
-        System.out.println(" 等待支付 -> 等待发货 id=" + id + " threadName=" + Thread.currentThread().getName());
-        Message message = MessageBuilder.withPayload(OrderStatusChangeEvent.PAYED).setHeader("order", order).build();
-        if (!sendEvent(message, order)) {
-            System.out.println(" 等待支付 -> 等待发货 失败, 状态异常 id=" + id + " threadName=" + Thread.currentThread().getName());
-        } else {
-            System.out.println(" 等待支付 -> 等待发货 成功 id=" + id + " threadName=" + Thread.currentThread().getName());
-        }
-        return orders.get(id);
-    }
-
-    @Override
-    public Order deliver(int id) {
-        Order order = orders.get(id);
-        System.out.println(" 等待发货 -> 等待收货 id=" + id + " threadName=" + Thread.currentThread().getName());
-        if (!sendEvent(MessageBuilder.withPayload(OrderStatusChangeEvent.DELIVERY).setHeader("order", order).build(), orders.get(id))) {
-            System.out.println(" 等待发货 -> 等待收货 失败，状态异常 id=" + id + " threadName=" + Thread.currentThread().getName());
-        } else {
-            System.out.println(" 等待发货 -> 等待收货 成功 id=" + id + " threadName=" + Thread.currentThread().getName());
-        }
-        return orders.get(id);
-    }
-
-    @Override
-    public Order receive(int id) {
-        Order order = orders.get(id);
-        System.out.println(" 等待收货 -> 完成 收货 id=" + id + " threadName=" + Thread.currentThread().getName());
-        if (!sendEvent(MessageBuilder.withPayload(OrderStatusChangeEvent.RECEIVED).setHeader("order", order).build(), orders.get(id))) {
-            System.out.println(" 等待收货 -> 完成 失败，状态异常 id=" + id + " threadName=" + Thread.currentThread().getName());
-        } else {
-            System.out.println(" 等待收货 -> 完成 成功 id=" + id + " threadName=" + Thread.currentThread().getName());
-        }
-        return orders.get(id);
-    }
-
-    @Override
-    public Map<Integer, Order> getOrders() {
-        return orders;
-    }
-
-
-    /**
-     * 发送订单状态转换事件
-     *
-     * @param message
-     * @param order
-     * @return
-     */
-    private boolean sendEvent(Message<OrderStatusChangeEvent> message, Order order) {
-        synchronized (String.valueOf(order.getId()).intern()) {
-            boolean result = false;
-            StateMachine<OrderStatus, OrderStatusChangeEvent> orderStateMachine = orderStateMachineFactory.getStateMachine(stateMachineId);
-            System.out.println("id=" + order.getId() + " 状态机 orderStateMachine" + orderStateMachine);
-            try {
-                orderStateMachine.start();
-                //尝试恢复状态机状态
-                persister.restore(orderStateMachine, order);
-                System.out.println("id=" + order.getId() + " 状态机 orderStateMachine id=" + orderStateMachine.getId());
-                //添加延迟用于线程安全测试
-                Thread.sleep(1000);
-                result = orderStateMachine.sendEvent(message);
-                //持久化状态机状态
-                persister.persist(orderStateMachine, order);
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                orderStateMachine.stop();
-            }
-            return result;
-        }
-    }
-}
-```
-
-### 3 listener中配置id
-
-```java
-@Component("orderStateListener")
-@WithStateMachine(id = OrderStateMachineConfig.orderStateMachineId)
-public class OrderStateListenerImpl {
-
-    @OnTransition(source = "WAIT_PAYMENT", target = "WAIT_DELIVER")
-    public boolean payTransition(Message<OrderStatusChangeEvent> message) {
-        System.out.println("----------------------------");
-        Order order = (Order) message.getHeaders().get("order");
-        order.setStatus(OrderStatus.WAIT_DELIVER);
-        System.out.println("支付 headers=" + message.getHeaders().toString() + " event=" + message.getPayload());
-        System.out.println("----------------------------");
-        return true;
-    }
-
-    @OnTransition(source = "WAIT_DELIVER", target = "WAIT_RECEIVE")
-    public boolean deliverTransition(Message<OrderStatusChangeEvent> message) {
-        System.out.println("----------------------------");
-        Order order = (Order) message.getHeaders().get("order");
-        order.setStatus(OrderStatus.WAIT_RECEIVE);
-        System.out.println("发货 headers=" + message.getHeaders().toString() + " event=" + message.getPayload());
-        System.out.println("----------------------------");
-        return true;
-    }
-
-    @OnTransition(source = "WAIT_RECEIVE", target = "FINISH")
-    public boolean receiveTransition(Message<OrderStatusChangeEvent> message) {
-        System.out.println("----------------------------");
-        Order order = (Order) message.getHeaders().get("order");
-        order.setStatus(OrderStatus.FINISH);
-        System.out.println("收货 headers=" + message.getHeaders().toString() + " event=" + message.getPayload());
-        System.out.println("----------------------------");
-        return true;
-    }
 }
 ```
