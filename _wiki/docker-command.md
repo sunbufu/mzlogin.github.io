@@ -241,3 +241,19 @@ docker.io/nextcloud
 ```
 
 详细配置参照 <https://hub.docker.com/_/nextcloud>
+
+## 2.9 vsftpd
+```bash
+docker run \
+--detach \
+--publish 20:20 \
+--publish 21:21 \
+--publish 21100-21110:21100-21110 \
+--volume ~/data/vsftpd/data:/home/vsftpd \
+--env FTP_USER=sunbufu \
+--env FTP_PASS=123456 \
+--name vsftpd \
+fauria/vsftpd
+```
+完成后可以通过日志查看启动情况 `docker logs vsftpd`  
+详细配置参照 <https://hub.docker.com/r/fauria/vsftpd>
