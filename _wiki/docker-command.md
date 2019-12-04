@@ -214,6 +214,7 @@ docker run \
 nacos/nacos-server
 ```
 
+访问页面 <http://127.0.0.1:8848/nacos/index.html>
 详细配置参照 <https://hub.docker.com/r/nacos/nacos-server>
 
 ## 2.7 postgres
