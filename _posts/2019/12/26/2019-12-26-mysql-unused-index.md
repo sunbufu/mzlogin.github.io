@@ -32,27 +32,27 @@ EXPLAIN SELECT * FROM t_order;
 
 索引失效是指，虽然建立了索引，查询中也使用了索引做条件，但是最后执行的时候却没有使用索引的情况。
 
-1. `OR` 关联非索引列
-2. 隐式类型转换
-   假设我们有个 varchar 类型 order_id 的索引。
-   反例：`SELECT * FROM order WHERE order_id = 123;`
-   正例：`SELECT * FROM order WHERE order_id = '123';`
-3. 运算符的使用
-   假设我们有个 int 类型 order_id 的索引。
-   反例：`SELECT * FROM order WHERE order_id - 1 = 9;`
-   正例：`SELECT * FROM order WHERE order_id = 10;`
-4. 函数的使用
-   假设我们有个 int 类型 order_id 的索引。
-   反例：`SELECT * FROM order WHERE ABS(order_id) = 9;`
-   正例：`SELECT * FROM order WHERE order_id = 10;`
-5. `LIKE` 以 % 开头
-   假设我们有个 varchar 类型的 user_name 的索引。
-   反例：`SELECT * FROM order WHERE user_name LIKE '%三';`
-   正例：`SELECT * FROM order WHERE user_name LIKE '张%';`
-6. 联合索引，未使用最左侧索引
-   假设我们有个联合索引 a,b,c，那么我们其实有 a，ab，abc。如果不使用 '最左前缀' 的话，无法使用复合索引。
-   反例：`SELECT * FROM order WHERE b = 1;`
-   正例：`SELECT * FROM order WHERE a = 1 AND b = 1;`
+1. `OR` 关联非索引列  
+2. 隐式类型转换  
+   假设我们有个 varchar 类型 order_id 的索引。  
+   反例：`SELECT * FROM order WHERE order_id = 123;`  
+   正例：`SELECT * FROM order WHERE order_id = '123';`  
+3. 运算符的使用  
+   假设我们有个 int 类型 order_id 的索引。  
+   反例：`SELECT * FROM order WHERE order_id - 1 = 9;`  
+   正例：`SELECT * FROM order WHERE order_id = 10;`  
+4. 函数的使用  
+   假设我们有个 int 类型 order_id 的索引。  
+   反例：`SELECT * FROM order WHERE ABS(order_id) = 9;`  
+   正例：`SELECT * FROM order WHERE order_id = 10;`  
+5. `LIKE` 以 % 开头  
+   假设我们有个 varchar 类型的 user_name 的索引。  
+   反例：`SELECT * FROM order WHERE user_name LIKE '%三';`  
+   正例：`SELECT * FROM order WHERE user_name LIKE '张%';`  
+6. 联合索引，未使用最左侧索引  
+   假设我们有个联合索引 a,b,c，那么我们其实有 a，ab，abc。如果不使用 '最左前缀' 的话，无法使用复合索引。  
+   反例：`SELECT * FROM order WHERE b = 1;`  
+   正例：`SELECT * FROM order WHERE a = 1 AND b = 1;`  
 7. mysql 觉得全表扫描更快(表数据少)
 
 # 3. 总结
