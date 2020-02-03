@@ -44,7 +44,7 @@ EXPLAIN SELECT * FROM t_order;
 4. 函数的使用  
    假设我们有个 int 类型 order_id 的索引。  
    反例：`SELECT * FROM order WHERE ABS(order_id) = 9;`  
-   正例：`SELECT * FROM order WHERE order_id = 10;`  
+   正例：`SELECT * FROM order WHERE order_id = 9;`  
 5. `LIKE` 以 % 开头  
    假设我们有个 varchar 类型的 user_name 的索引。  
    反例：`SELECT * FROM order WHERE user_name LIKE '%三';`  
