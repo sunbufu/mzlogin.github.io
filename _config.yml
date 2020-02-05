@@ -105,7 +105,7 @@ gitalk:
   owner: sunbufu
   repo: blog-comments
   clientID: 59e22883393cb32a3b96
-  clientSecret: bb45d9edf67b30ad811bcabe74ff53ea1f3bb03a
+  clientSecret: cc301d2d467412579aa96d8d1c856ee0ee623478
 # 在使用其它评论组件时可点击显示 Disqus
 lazy_load_disqus : false
 
