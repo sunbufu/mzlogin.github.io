@@ -82,7 +82,7 @@ docker start [OPTIONS] CONTAINER [CONTAINER...]
 docker stop [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
-* `--time , -t` : 再杀掉容器之前等待秒数（默认 10）
+* `--time , -t` : 在杀掉容器之前等待秒数（默认 10）
 
 ### 1.2.4 杀掉容器
 
