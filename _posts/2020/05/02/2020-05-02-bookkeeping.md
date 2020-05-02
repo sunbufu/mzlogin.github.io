@@ -21,7 +21,7 @@ keywords: bookkeeping, 教程
 
 # 二 配置
 
-配置过程主要是对 webdav 的配置，我使用[坚果云](https://www.jianguoyun.com/)作为服务器，一下也已坚果云为例，其它服务类似。
+配置过程主要是对 webdav 的配置，我使用[坚果云](https://www.jianguoyun.com/)作为服务器，以下也以坚果云为例，其它服务类似。
 
 ## 2.1 webdav 创建目录
 首先需要在 webdav 服务器新建目录 bookkeeping，用于保存 app 配置和数据。
