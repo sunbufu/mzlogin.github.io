@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: https://www.sunbufu.club
+url: https://sunbufu.github.io
 date_format: "ordinal"
 title: 孙不服的博客
 subtitle: "Life is great and everything will be OK."
